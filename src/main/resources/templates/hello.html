@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="head :: head"></th:block>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-custom-2">
+    <div class="container">
+        <br>
+        <center>
+            <button class="btn btn-primary btn-lg" href="#signup" data-toggle="modal" data-target=".log-sign">Sign
+                In/Register
+            </button>
+        </center>
+        <br>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="bs-example bs-example-tabs">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li id="tab1" class=" active tab-style login-shadow "><a href="#signin" data-toggle="tab">Log
+                            In</a></li>
+                        <li id="tab2" class=" tab-style "><a href="#signup" data-toggle="tab">Sign Up</a></li>
+
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <div id="myTabContent" class="tab-content">
+
+                        <div class="tab-pane fade active in" id="signin">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <!-- Sign In Form -->
+                                    <!-- Text input-->
+
+                                    <div class="group">
+                                        <input required="" class="input" type="text"><span
+                                            class="highlight"></span><span class="bar"></span>
+                                        <label class="label">Email address</label></div>
+
+
+                                    <!-- Password input-->
+                                    <div class="group">
+                                        <input required="" class="input" type="password"><span class="highlight"></span><span
+                                            class="bar"></span>
+                                        <label class="label">Password</label>
+                                    </div>
+                                    <em>minimum 6 characters</em>
+
+                                    <div class="forgot-link">
+                                        <a href="#forgot" data-toggle="modal" data-target="#forgot-password"> I forgot
+                                            my password</a>
+                                    </div>
+
+
+                                    <!-- Button -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="signin"></label>
+                                        <div class="controls">
+                                            <button id="signi" name="signin" class="btn btn-primary btn-block">Log In
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="signup">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <!-- Sign Up Form -->
+                                    <!-- Text input-->
+                                    <form method="post">
+                                        <div class="group">
+                                            <input required="" class="input" type="text" name="name" id="name"><span
+                                                class="highlight"></span><span class="bar"></span>
+                                            <label class="label">First Name</label></div>
+
+                                        <!-- Text input-->
+                                        <div class="group">
+                                            <input required="" class="input" type="text" name="surname" id="surname"><span
+                                                class="highlight"></span><span class="bar"></span>
+                                            <label class="label">Last Name</label></div>
+
+                                        <!-- Password input-->
+                                        <div class="group">
+                                            <input required="" class="input" type="text" name="email" id="email"><span
+                                                class="highlight"></span><span class="bar"></span>
+                                            <label class="label">Email</label></div>
+
+                                        <!-- Text input-->
+                                        <div class="group">
+                                            <input required="" class="input" type="password" name="password" id="password"><span
+                                                class="highlight"></span><span
+                                                class="bar"></span>
+                                            <label class="label">Password</label></div>
+                                        <em>1-8 Characters</em>
+                                        <!-- Button -->
+                                        <div class="control-group">
+                                            <label class="control-label" for="save_data"></label>
+                                            <div class="controls">
+                                                <button id="save_data" name="confirmsignup"
+                                                        class="btn btn-primary btn-block">Sign Up
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--modal2-->
+    <div class="modal fade bs-modal-sm" id="forgot-password" tabindex="0" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Password will be sent to your email</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="group">
+                                <input required="" class="input" type="text"><span class="highlight"></span><span
+                                    class="bar"></span>
+                                <label class="label">Email address</label></div>
+
+
+                            <div class="control-group">
+                                <label class="control-label"></label>
+                                <div class="controls">
+                                    <button id="forpasswodr" name="forpassword" class="btn btn-primary btn-block">Send
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+</body>
+<script>
+    $(window, document, undefined).ready(function () {
+
+        $('.input').blur(function () {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+        });
+
+    });
+
+
+    $('#tab1').on('click', function () {
+        $('#tab1').addClass('login-shadow');
+        $('#tab2').removeClass('signup-shadow');
+    });
+
+    $('#tab2').on('click', function () {
+        $('#tab2').addClass('signup-shadow');
+        $('#tab1').removeClass('login-shadow');
+    });
+
+
+    $(document).ready(function () {
+        $("#save_data").click(function (e) {
+            $.ajax({
+                    type: "POST",
+                    data: JSON.stringify({
+                        "email": $("#email").val(),
+                        "name": $("#name").val(),
+                        "surName": $("#surName").val(),
+                        "password": $("#password").val()
+
+                    }),
+                    contentType: "application/json",
+                    url: "/user/register",
+                    success: function (result) {
+                        alert('success');
+                        console.log("asdasdasd")
+                    },
+                    error: function (result) {
+                        alert('error');
+                    }
+                },
+            )
+        });
+
+    });
+</script>
+</html>

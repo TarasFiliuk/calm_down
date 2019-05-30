@@ -1,0 +1,61 @@
+# Spring
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  # Data Source
+  datasource:
+    url:  jdbc:mysql://localhost:3306/training_db?createDatabaseIfNotExist=true
+    # Username and password
+    username: root
+    password: root
+    # Keep the connection alive if idle for a long time (needed in production)
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  # Jpa / Hibernate
+  jpa:
+    show-sql: true
+    # Hibernate ddl auto (create, create-drop, update): with "update" the database
+    # schema will be automatically updated accordingly to java entities found in
+    # the project
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+      # Naming strategy
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+  mail:
+    host: smtp.gmail.com
+    username: tt8522571@gmail.com
+    password: qazwsxedcqwerty
+    port: 465
+    protocol: smtps
+
+security:
+  oauth2:
+    client:
+      clientId: 254176049133-61eqfvioi1pdv091oihm30oseegqgiek.apps.googleusercontent.com
+      clientSecret: 8hRZCRScv0dBiVfvGwUK5boM
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope: openid,email,profile
+    resource:
+      user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+      prefer-token-info: true
+
+#jwt:
+#  accessTokenDuration: 36000000
+#  refreshTokenDuration: 2592000000
+#  tokenIssuer: http://training.co.uk
+#  tokenSecret: secret
+#
+#mail:
+#debug: true
+#
+#file:
+#  upload-dir: ../static/img
+

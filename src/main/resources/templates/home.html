@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+<!--    <th:block th:insert="head :: head"></th:block>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+</head>
+
+<body style="margin-left: 1%">
+<header>
+    <H1>REGISTRATION</H1>
+</header>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<!--<link rel="stylesheet" href="../static/css/main.css">-->
+<form method="post">
+    <input type="text" name="name" placeholder="name" id="name">
+    <input type="text" name="surName" placeholder="surName" id="surName">
+    <input type="text" name="email" placeholder="email" id="email">
+    <input type="text" name="password" placeholder="password" id="password">
+    <input type="submit" value="submit" id="save_data">
+</form>
+<H1>===================================================================================</H1>
+<H1>LOGIN</H1>
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+</form>
+<H1>===================================================================================</H1>
+
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout">
+    </form>
+
+
+<H1>===================================================================================</H1>
+<div class="row p-3 mt-5 border bg-light rounded ">
+    <p th:text="${adminName}"></p>
+    <p class="col text-right text-danger m-0">Admin</p>
+</div>
+<H1>===================================================================================</H1>
+
+<h1>Uploading file</h1>
+<form method="POST" enctype="multipart/form-data"
+      action="/upload">
+    File to upload: <input type="file" name="file"><br />
+    Name: <input type="text" name="name"><br /> <br />
+    <input type="submit" value="Upload"> Press here to upload the file!
+</form>
+</body>
+
+
+<script>
+    $(document).ready(function () {
+        $("#save_data").click(function (e) {
+            $.ajax({
+                    type: "POST",
+                    data: JSON.stringify({
+                        "email": $("#email").val(),
+                        "name": $("#name").val(),
+                        "surName": $("#surName").val(),
+                        "password": $("#password").val()
+
+                    }),
+                    contentType: "application/json",
+                    url: "/user/register",
+                    success: function (result) {
+                        alert('success');
+                        console.log("asdasdasd")
+                    },
+                    error: function (result) {
+                        alert('error');
+                    }
+                },
+            )
+        });
+
+    });
+
+</script>
+</html>
+

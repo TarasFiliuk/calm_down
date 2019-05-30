@@ -1,0 +1,20 @@
+# Spring
+spring:
+  # Data Source
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/tappter_db?useUnicode=yes&characterEncoding=utf8&useSSL=false
+    # Username and password
+    username: root
+    password: root
+    # Keep the connection alive if idle for a long time (needed in production)
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  # Jpa / Hibernate
+  jpa:
+    show-sql: true
+
+jwt:
+  accessTokenDuration: 36000000
+  refreshTokenDuration: 2592000000
+  tokenIssuer: http://training.co.uk
+  tokenSecret: secret

@@ -1,0 +1,8 @@
+{
+  "jwt": {
+    "type": "apiKey",
+    "description": "JWT token created from POST /auth/token",
+    "name": "X-AUTH-TOKEN",
+    "in": "header"
+  }
+}
