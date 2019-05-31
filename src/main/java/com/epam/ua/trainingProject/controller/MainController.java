@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.epam.ua.trainingProject.utils.Constants.*;
 import static javax.servlet.http.HttpServletResponse.*;
@@ -97,5 +101,17 @@ public class MainController {
         model.addAttribute("adminName", principal);
 
         return "userPage";
+    }
+
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public String connectWithAdmin(String message) {
+
+        return message;
+    }
+
+    @GetMapping("/ws")
+    public String wsPage() {
+        return "index";
     }
 }
